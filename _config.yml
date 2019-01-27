@@ -48,13 +48,13 @@ author:
   medium    : # "user_name" the last part of your profile url, e.g. https://medium.com/user_name
   douban    : # "user_name" the last part of your profile url, e.g. https://www.douban.com/people/user_name/
   linkedin  : # "user_name" the last part of your profile url, e.g. https://www.linkedin.com/in/user_name/
-  github    : # "user_name" the last part of your profile url, e.g. https://github.com/user_name
+  github    : Mutuduxf
   npm       : # "user_name" the last part of your profile url, e.g. https://www.npmjs.com/~user_name
 
 
 ## => GitHub Repository (if the site is hosted by GitHub)
 ##############################
-repository: user_name/repo_name
+repository: https://github.com/Mutuduxf/Mutuduxf.github.io
 repository_tree: master
 
 
