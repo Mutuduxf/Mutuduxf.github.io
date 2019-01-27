@@ -126,8 +126,8 @@ comments:
   ## Gitalk
   # please refer to https://github.com/gitalk/gitalk for more info.
   gitalk:
-  clientID: fa516882a86c9066d71d #Github Application Client ID
-  clientSecret: 9b6ac893827e6496788e38efe31b37f8bdd3b074 #Github Application Client Secret
+  clientID: b7cf1aeca16b9d70bc1d #Github Application Client ID
+  clientSecret: a632b313468fa6c310788cc4eaa250eaf66c28a5 #Github Application Client Secret
   repository: Mutuduxf.github.io    #仓库名称
   owner: Mutuduxf    #github用户名
   admin:  #Github repo owner and collaborators, only these guys can initialize github issues, IT IS A LIST.
