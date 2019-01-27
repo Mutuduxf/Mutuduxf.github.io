@@ -132,7 +132,7 @@ comments:
   owner: Mutuduxf    #github用户名
   admin:  #Github repo owner and collaborators, only these guys can initialize github issues, IT IS A LIST.
     - [Mutuduxf]
-  id: location.pathname
+  id: window.location.pathname
   distractionFreeMode: true
   enableHotKey: true
 
