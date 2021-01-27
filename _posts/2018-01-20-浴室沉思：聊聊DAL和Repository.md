@@ -15,11 +15,15 @@ author:       "杜小非"
 
 # 这是一个由DDD群引发的随笔
 
+---
+
 在写了上一篇随笔[《浴室沉思：聊聊ORM》](https://www.mutuduxf.com/2018/01/05/%E6%B5%B4%E5%AE%A4%E6%B2%89%E6%80%9D-%E8%81%8A%E8%81%8AORM.html)后一些朋友私聊我，很多刚接触DDD的朋友会对Repository（仓储层）这东西有点疑惑，为什么要叫仓储层？是不是三层的DAL换个名字而已？毕竟大家都是对数据库的操作嘛，而且我用EF还有必要用仓储么？是不是可以省掉这一层？ABP框架的持久化究竟有什么问题？
 
 在回答这些问题之前，我们要先了解一些模型分层的概念。
 
-## DO
+## DO（Domain Object）
+
+---
 
 几乎每位程序员在刚入门时都以三层架构（3-tier architecture）为基础，界面层（User Interface layer）、业务逻辑层（Business Logic Layer）、数据访问层（Data access layer）首次让我们在架构级别了解高内聚低耦合的概念。其中对数据访问层也即是DAL的定义是——屏蔽对“数据文件”的操作，这里的数据文件指的是数据库以及其它持久化实现。
 
@@ -87,6 +91,8 @@ public enum OrderStatus
 
 ## PO（Persistent Object/持久化对象）
 
+---
+
 实际上我们持久化的并不是DO，而是DO的“状态”。例如你吃饭时被人偷拍，照片会将你吃饭时的样子记录下来，但吃饭这种“行为”本身无法持久化，如上面的Pay和Commit两个方法。另外DO的一个原则是“原子性”，也就是说拿就整个拿，存就整个存，如果是用仓储层来持久化，则只会有一个OrderRepository，将整个Order作为参数丢进去，仓储层内则将Order和OrderItem的状态部分转为OrderPo和OrderItemPo两种贫血对象，并用之持久化。
 
 >重点：只有聚合才有仓储
@@ -95,6 +101,8 @@ public enum OrderStatus
 
 ## 我们已经用了ORM（EF）了，还有必要用仓储层么？
 
+---
+
 其实还是要的，上一篇随笔[《关于ORM的浴室沉思》](https://www.mutuduxf.com/2018/01/05/%E5%85%B3%E4%BA%8EORM%E7%9A%84%E6%B5%B4%E5%AE%A4%E6%B2%89%E6%80%9D.html)说明了ORM的概念，但遗憾的是现在所有ORM实际上都没有彻底解决阻抗失配的问题。
 
 另外DO是原子性的，因此只有聚合才有仓储，上述例子OrderItem不属于聚合，它是没有仓储的。假如直接用EF的话代码是可以直接访问到DbContext\<OrderItem>，这就对代码造成了隐患。
@@ -102,6 +110,8 @@ public enum OrderStatus
 而且直接使用EF的话，所有的业务代码将会对EF造成高度耦合，这会造成潜在的技术风险。假如我们使用的是仓储层，到时候只需要在仓储层捣鼓就行。实际上DDD项目中，ORM反而不是必要的东西。
 
 ## 所以ABP的问题是？
+
+---
 
 ABP是一个很好的框架，土牛的技术水平也很高，但不能说ABP就是DDD的标准答案，例如其仓储层实际上并不是服务于DO而是PO。因此有种说法ABP不是DDD而是DDD LITE，这种说法有其原因。另外仓储层严谨地说不应该提供IQueryable，而应该是Command端需要什么的获取方法才提供，否则会无法进行单元测试。
 
